@@ -1,0 +1,87 @@
+#include <stdio.h>
+struct node{    //create struct node
+    int data;
+    struct node* next;
+}*first=NULL;   //head
+struct node * last=NULL;
+int main()
+{
+    int f;
+    int d;
+    int val;
+    
+    //create
+    printf("Enter the number of elements\n");
+    scanf("%d",&f);
+    
+    for(int i=0;i<f;i++)
+    {
+        scanf("%d",&val);
+        create(val);
+    }
+    // delete
+    printf("Enter the number of elements to delete\n");
+    scanf("%d",&d);
+    for(int k=0;k<d;k++)
+    {
+        delete();
+    }
+    
+    //display
+    display();
+    
+    
+
+    return 0;
+}
+
+
+void create(int val)
+{
+
+if(last==NULL)
+{
+first=(struct node*)malloc(sizeof(struct node));
+first->data=val;
+first->next=NULL;
+last=first;
+}
+else
+{
+    struct node*t=(struct node*)malloc(sizeof(struct node));
+    t->data=val;
+    t->next=NULL;
+    last->next=t;
+    last=t;
+}
+}
+
+void delete()
+{
+struct node *temp,*t=first;
+while(t->next!=NULL && t->data>=t->next->data)
+{
+    temp=t;
+    t=t->next;
+}
+if(t==first)
+{
+    first=first->next;
+}
+else{
+    temp->next=t->next;
+}
+}
+
+
+void display()
+{
+    struct node *temp=first;
+    
+    while(temp->next!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("%d ",temp->data);
+}
